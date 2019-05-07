@@ -51,6 +51,8 @@ buck-out/
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
+vendor/
+android-developer-creds.json
 
 # Bundle artifact
 *.jsbundle

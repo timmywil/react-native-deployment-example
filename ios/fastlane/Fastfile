@@ -1,0 +1,44 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+desc "Push a new beta build to TestFlight"
+before_all do
+  # Sets up fastlane match on Circle CI
+  # for readonly code signing
+  setup_circle_ci
+end
+
+desc "Build the iOS app"
+lane :assemble_build do
+  match(type: "appstore")
+  gym(
+    scheme: "rndeploymentexample",
+    export_method: "app-store",
+    export_options: {
+      provisioningProfiles: {
+        "com.rndeploymentexample" => "match AppStore com.rndeploymentexample"
+      }
+    }
+  )
+end
+
+desc "Build and deploy to TestFlight"
+lane :deploy do
+  assemble_build
+  upload_to_testflight
+  # Includes the git tag commit message,
+  # which has all the release notes
+  # slack(message: "App successfully released!")
+end

@@ -5,6 +5,8 @@
   "scripts": {
     "commit": "git-cz",
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "echo \"Preferred Linting Task would run\"",
+    "test:unit": "echo \"Unit tests would run\"",
     "test": "jest",
     "postversion": "react-native-version",
     "release": "semantic-release"
