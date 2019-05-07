@@ -130,34 +130,31 @@ jobs:
           path: app/build/outputs/apk/
           destination: /apk/
 
-  deploy_ios:
-    macos:
-      xcode: '10.1.0'
-    working_directory: ~/project
-    environment:
-      FL_OUTPUT_DIR: output
-    shell: /bin/bash --login -o pipefail
-    steps:
-      - checkout
-      - *restore_yarn_cache_macos
-      - run: yarn --frozen-lockfile
-      - *save_yarn_cache_macos
-
-      - *restore_gems_cache_ios
-      - run:
-          command: bundle install
-          working_directory: ios
-      - *save_gems_cache_ios
-
-      - run:
-          name: Build and deploy iOS ipa
-          command: bundle exec fastlane deploy
-          working_directory: ios
-          no_output_timeout: 10m
-
-      - store_artifacts:
-          path: ios/output/gym/rndeploymentexample.ipa
-          destination: /rndeploymentexample.ipa
+  # deploy_ios:
+  #   macos:
+  #     xcode: '10.1.0'
+  #   working_directory: ~/project
+  #   environment:
+  #     FL_OUTPUT_DIR: output
+  #   shell: /bin/bash --login -o pipefail
+  #   steps:
+  #     - checkout
+  #     - *restore_yarn_cache_macos
+  #     - run: yarn --frozen-lockfile
+  #     - *save_yarn_cache_macos
+  #     - *restore_gems_cache_ios
+  #     - run:
+  #         command: bundle install
+  #         working_directory: ios
+  #     - *save_gems_cache_ios
+  #     - run:
+  #         name: Build and deploy iOS ipa
+  #         command: bundle exec fastlane deploy
+  #         working_directory: ios
+  #         no_output_timeout: 10m
+  #     - store_artifacts:
+  #         path: ios/output/gym/rndeploymentexample.ipa
+  #         destination: /rndeploymentexample.ipa
 
 workflows:
   version: 2
@@ -170,29 +167,29 @@ workflows:
             tags:
               only:
                 - /\d+\.\d+\.\d+/
-      - deploy_android:
-          requires:
-            - verify
-          # This job runs on the
-          # deploy-android branch
-          # and for tags
-          filters:
-            branches:
-              only:
-                - deploy-android
-            tags:
-              only:
-                - /\d+\.\d+\.\d+/
-      - deploy_ios:
-          requires:
-            - verify
-          # This job runs on the
-          # deploy-ios branch
-          # and for tags
-          filters:
-            branches:
-              only:
-                - deploy-ios
-            tags:
-              only:
-                - /\d+\.\d+\.\d+/
+      # - deploy_android:
+      #     requires:
+      #       - verify
+      #     # This job runs on the
+      #     # deploy-android branch
+      #     # and for tags
+      #     filters:
+      #       branches:
+      #         only:
+      #           - deploy-android
+      #       tags:
+      #         only:
+      #           - /\d+\.\d+\.\d+/
+      # - deploy_ios:
+      #     requires:
+      #       - verify
+      #     # This job runs on the
+      #     # deploy-ios branch
+      #     # and for tags
+      #     filters:
+      #       branches:
+      #         only:
+      #           - deploy-ios
+      #       tags:
+      #         only:
+      #           - /\d+\.\d+\.\d+/
