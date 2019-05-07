@@ -29,23 +29,6 @@ references:
         - node_modules/
       key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
 
-  # The node module cache for macos machines must
-  # be separate from the other node module cache
-  # because the home directory differs.
-  restore_yarn_cache_macos: &restore_yarn_cache_macos
-    restore_cache:
-      keys:
-        # when lock file changes, use increasingly general patterns to restore cache
-        - yarn-packages-macos-v4-{{ .Branch }}-{{ checksum "yarn.lock" }}
-        - yarn-packages-macos-v4-{{ .Branch }}-
-        - yarn-packages-macos-v4-
-
-  save_yarn_cache_macos: &save_yarn_cache_macos
-    save_cache:
-      paths:
-        - node_modules/
-      key: yarn-packages-macos-v4-{{ .Branch }}-{{ checksum "yarn.lock" }}
-
   restore_gems_cache_android: &restore_gems_cache_android
     restore_cache:
       key: *gems_cache_key_android
