@@ -1,4 +1,4 @@
-# react-native-deployment-example [![CircleCI](https://circleci.com/gh/timmywil/react-native-deployment-example/tree/master.svg?style=svg)](https://circleci.com/gh/timmywil/react-native-deployment-example/tree/master)
+# react-native-deployment-example
 
 This is an example repo to demonstrate how to setup a powerful, single-command deployment process. It was created with `react-native init`, and then edited by following the tutorial in the following blog series:
 
