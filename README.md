@@ -1,5 +1,7 @@
 # react-native-deployment-example
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/timmywil/react-native-deployment-example.svg)](https://greenkeeper.io/)
+
 This is an example repo to demonstrate how to setup a powerful, single-command deployment process. It was created with `react-native init`, and then edited by following the tutorial in the following blog series:
 
 [Automate React Native Deployment](https://timmywil.com/blog/Automate-React-Native-Deployment-Part-1/)
